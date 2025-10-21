@@ -1,0 +1,212 @@
+:root {
+  font-family: var(--font-inter), sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: var(--font-inter-variable), sans-serif;
+    font-optical-sizing: auto;
+  }
+}
+
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+@config '../../tailwind.config.mjs';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --palette-base: #fff;
+  --palette-50: oklch(0.98 0.005 95.9); /* #fafafa */
+  --palette-100: oklch(0.97 0.003 107.8); /* #f5f5f5 */
+  --palette-200: oklch(0.93 0.003 107.8); /* #e5e5e5 */
+  --palette-300: oklch(0.89 0.003 107.8); /* #d4d4d4 */
+  --palette-400: oklch(0.74 0.003 107.8); /* #a3a3a3 */
+  --palette-500: oklch(0.6 0.003 107.8); /* #737373 */
+  --palette-600: oklch(0.5 0.003 107.8); /* #525252 */
+  --palette-700: oklch(0.45 0.003 107.8); /* #404040 */
+  --palette-800: oklch(0.35 0.003 107.8); /* #262626 */
+  --palette-900: oklch(0.3 0.003 107.8); /* #171717 */
+  --palette-950: oklch(0.25 0.003 107.8); /* #0a0a0a */
+}
+
+.dark {
+  --palette-base: #000;
+  --palette-50: oklch(0.25 0.003 107.8); /* #0a0a0a */
+  --palette-100: oklch(0.3 0.003 107.8); /* #171717 */
+  --palette-200: oklch(0.35 0.003 107.8); /* #262626 */
+  --palette-300: oklch(0.4 0.003 107.8); /* #373737 */
+  --palette-400: oklch(0.5 0.003 107.8); /* #525252 */
+  --palette-500: oklch(0.67 0.003 107.8); /* #8a8a8a */
+  --palette-600: oklch(0.74 0.003 107.8); /* #a3a3a3 */
+  --palette-700: oklch(0.89 0.003 107.8); /* #d4d4d4 */
+  --palette-800: oklch(0.93 0.003 107.8); /* #e5e5e5 */
+  --palette-900: oklch(0.97 0.003 107.8); /* #f5f5f5 */
+  --palette-950: oklch(0.98 0.005 95.9); /* #fafafa */
+}
+
+@theme inline {
+  --spacing: 4px;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-background: var(--palette-50);
+  --color-foreground: var(--palette-600);
+  --color-muted-foreground: var(--palette-400);
+  --color-headings: var(--palette-800);
+  --color-border: var(--palette-300);
+
+  --font-sans: var(--font-inter), 
+    ui-sans-serif, 
+    system-ui, 
+    sans-serif, 
+    'Apple Color Emoji', 
+    'Segoe UI Emoji', 
+    'Segoe UI Symbol', 
+    'Noto Color Emoji';
+}
+
+/* Fade-in animation for elements with .animate class */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Staggered animation delays for sequential fade-ins */
+.animate:nth-child(1) {
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+
+.animate:nth-child(2) {
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.animate:nth-child(3) {
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.animate:nth-child(4) {
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+.animate:nth-child(5) {
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+.animate:nth-child(6) {
+  animation-delay: 0.6s;
+  opacity: 0;
+}
+
+.animate:nth-child(7) {
+  animation-delay: 0.7s;
+  opacity: 0;
+}
+
+.animate:nth-child(8) {
+  animation-delay: 0.8s;
+  opacity: 0;
+}
+
+.animate:nth-child(9) {
+  animation-delay: 0.9s;
+  opacity: 0;
+}
+
+.animate:nth-child(10) {
+  animation-delay: 1s;
+  opacity: 0;
+}
+
+/* For users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* VS Code / Visual Studio color scheme for text - Enhanced */
+
+/* Special styling for the intro */
+.intro-name {
+  background: linear-gradient(135deg, #c586c0 0%, #4ec9b0 50%, #569cd6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+/* Keywords like class, function, var, const */
+.keyword {
+  color: #c586c0; /* Purple - like 'class', 'public', 'new' */
+  font-weight: 500;
+}
+
+/* Class names and types */
+.class-name {
+  color: #4ec9b0; /* Teal/Cyan - like 'String', 'List' */
+  font-weight: 500;
+}
+
+/* Strings */
+.string {
+  color: #ce9178; /* Orange/Brown - like "Hello World" */
+}
+
+/* Numbers */
+.number {
+  color: #b5cea8; /* Light green */
+}
+
+/* Comments */
+.comment {
+  color: #6a9955; /* Green - like // comments */
+}
+
+/* Functions/Methods */
+.function {
+  color: #dcdcaa; /* Yellow - like method names */
+  font-weight: 500;
+}
+
+/* Properties */
+.property {
+  color: #9cdcfe; /* Light blue - like properties */
+}
+
+/* Variables */
+.variable {
+  color: #9cdcfe; /* Light blue */
+}
+
+/* Emphasis/Important terms */
+.emphasis {
+  color: #d4a5a5; /* Pink/Rose */
+  font-style: italic;
+}
+
+.indent {
+  padding-left: 2rem !important;
+  display: block;
+}
+
+.code-font {
+  font-family: 'Consolas', 'Monaco', monospace !important;
+}

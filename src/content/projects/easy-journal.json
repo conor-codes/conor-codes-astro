@@ -1,0 +1,8 @@
+{
+    "title": "Easy Journal",
+    "description": "A lightweight daily journal app built with .NET MAUI featuring quote of the day and history tracking.",
+    "date": "2025",
+    "tech": ["C#", "MAUI", "Xamarin"],
+    "url": "https://github.com/conor-codes/easy-journal",
+    "category": "mobile"
+  }  

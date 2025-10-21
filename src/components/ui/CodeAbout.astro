@@ -1,0 +1,58 @@
+---
+const codeContent = `<div class="comment">/// &lt;summary&gt;</div>
+<div class="comment">/// A developer focused on building simple, reliable software.</div>
+<div class="comment">/// &lt;/summary&gt;</div>
+<div class="function-signature"><span class="keyword">public string</span> <span class="function">GetAbout</span>(<span class="keyword">string</span> <span class="variable">name</span> = <span class="string">"Conor"</span>)</div>
+<div class="brace">{</div>
+<div class="indent">
+    <div class="paragraph"><span class="class-name">Console</span>.<span class="function">WriteLine</span>(<span class="string">$"Hey, I'm <span class="variable">{name}</span> 👋"</span>);</div>
+    <br>
+    <div class="comment">// A .NET developer who enjoys turning ideas into simple, reliable software.</div>
+    <div class="comment">// Currently focused on .NET MAUI and full-stack development.</div>
+    <br>
+    <div class="comment">// TODO: keep learning, stay curious.</div>
+    <div class="comment">// NOTE: code should be clean enough to be proud of, messy enough to ship on time.</div>
+    <br>
+    <div class="paragraph"><span class="keyword">var</span> <span class="variable">profile</span> = <span class="keyword">new</span></div>
+    <div class="paragraph">{</div>
+    <div class="paragraph" style="margin-left: 3rem;">Stack&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span class="string">".NET, C#, MAUI, APIs, SQL"</span>,</div>
+    <div class="paragraph" style="margin-left: 3rem;">Focus&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span class="string">"Mobile apps, Clean code, Great UX"</span>,</div>
+    <div class="paragraph" style="margin-left: 3rem;">Now&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span class="string">"Full-stack chat app with SignalR"</span>,</div>
+    <div class="paragraph" style="margin-left: 3rem;">Interests = <span class="string">"Cooking, training, hiking, gaming"</span></div>
+    <div class="paragraph">};</div>
+    <br>
+    <div class="paragraph"><span class="keyword">return</span> <span class="string">"not sure this actually compiles but you get the idea"</span>;</div>
+</div>
+<div class="brace">}</div>`;
+---
+
+<div class="prose dark:prose-invert">
+  <div class="code-block" set:html={codeContent} />
+</div>
+
+<style>
+  .code-block {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    font-family: 'Consolas', 'Monaco', monospace;
+    line-height: 1.6;
+  }
+  
+  .code-block .paragraph {
+    margin-bottom: 0;
+    margin-left: 2rem;
+  }
+  
+  .code-block .comment {
+    margin-left: 2rem;
+  }
+  
+  .code-block .brace {
+    margin: 0.25rem 0;
+  }
+  
+  .code-block .function-signature {
+    margin-bottom: 0.25rem;
+  }
+</style>

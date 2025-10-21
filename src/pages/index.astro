@@ -1,0 +1,96 @@
+---
+import { getEntry, getCollection, render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import Author from '@/components/ui/Author.astro';
+import { DEFAULT_CONFIGURATION } from '@/lib/constants';
+import WorkExperience from '@/components/ui/WorkExperience.astro';
+import Talk from '@/components/ui/Talk.astro';
+import Project from '@/components/ui/Project.astro';
+import CodeAbout from '@/components/ui/CodeAbout.astro';
+import { sortJobsByDate } from '@/lib/utils';
+
+const entry = await getEntry('pages', 'homepage');
+
+if (!entry) {
+  throw new Error('Homepage entry not found');
+}
+
+const { Content } = await render(entry);
+
+const links = await getCollection('links');
+const jobs = await getCollection('jobs');
+const sortedJobs = sortJobsByDate(jobs);
+const talks = await getCollection('talks');
+const projects = await getCollection('projects');
+
+//Sort projects by date if you want newest first
+const sortedProjects = projects.sort((a, b) => {
+  if (!a.data.date || !b.data.date) return 0;
+  return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+});
+---
+
+<BaseLayout seo={entry.data.seo}>
+  <Container as="section" class="py-6 animate">
+    <Author {...DEFAULT_CONFIGURATION.author} />
+  </Container>
+
+<Container as="section" class="py-6 animate">
+  <div class="flex flex-col gap-6">
+    <div class="code-font">
+      <div><span class="keyword">using</span> System;</div>
+      <div><span class="keyword">using</span> Location = <span class="string">"Liverpool, England"</span>;</div>
+    </div>
+    <div class="flex items-center code-font">
+      <span class="text-headings">
+        <span class="keyword">#region</span> <span class="class-name">About</span>
+      </span>
+    </div>
+    <CodeAbout />
+    <span class="keyword code-font">#endregion</span> 
+  </div>
+</Container>
+{
+    links.length > 0 && (
+      <Container as="section" class="py-8 animate">
+        <div class="flex flex-col gap-5">
+          <span class="text-headings">Contact</span>
+          <ul class="flex flex-col gap-3">
+            {links.map((link) => (
+              <li class="py-0.5">
+                <div class="flex items-center gap-5">
+                  <span class="min-w-28 text-muted-foreground">
+                    {link.data.label}
+                  </span>
+                  <a
+                    class="text-headings font-medium"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    href={link.data.url}
+                  >
+                    {link.data.name}
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Container>
+    )
+  }
+  {
+    sortedProjects.length > 0 && (
+      <Container as="section" class="py-6 animate">
+        <div class="flex flex-col gap-5">
+          <span class="text-headings">Recent Projects</span>
+          <ul class="flex flex-col gap-6">
+            {sortedProjects.map((project) => (
+              <Project entry={project} />
+            ))}
+          </ul>
+        </div>
+      </Container>
+    )
+  }
+</BaseLayout>

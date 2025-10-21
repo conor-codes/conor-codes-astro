@@ -1,0 +1,8 @@
+{
+"title": "Portfolio Site",
+"description": "Minimal, fast, and accessible portfolio built with Astro and Tailwind CSS.",
+"date": "2025",
+"tech": ["Astro", "TypeScript", "Tailwind"],
+"url": "https://conor.codes",
+"category": "web"
+}

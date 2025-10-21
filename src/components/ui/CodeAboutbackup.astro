@@ -1,0 +1,46 @@
+---
+const codeContent = `<div class="function-signature"><span class="keyword">public void</span> <span class="function">GetAbout</span>(<span class="keyword">const string</span> <span class="variable">name</span> = <span class="string">"Conor"</span>)</div>
+<div class="brace">{</div>
+<div class="indent">
+    <div class="paragraph"><span class="class-name">Console</span>.<span class="function">WriteLine</span>(<span class="string">$"Hey, I'm <span class="variable">{name}</span> 👋"</span>);</div>
+    <br>
+    <div class="paragraph">A <span class="emphasis">developer</span> who enjoys turning <span class="variable">ideas</span> into <span class="function">simple</span>, <span class="function">reliable</span> <span class="keyword">software</span> that feels good to use.</div>
+    <br>
+    <div class="paragraph">I'm currently focused on <span class="keyword">.NET</span> <span class="class-name">MAUI</span> and <span class="property">full-stack development</span>, building <span class="keyword">apps</span> with <span class="function">cleaner architecture</span>, <span class="function">better UX</span>, and a stronger sense of <span class="property">craft</span>. I like making things that are <span class="string">fast</span>, <span class="string">functional</span>, and not terrible to look at, and I'm happiest when I'm <span class="function">learning by building</span>.</div>
+    <br>
+    <div class="paragraph">Outside of code, you'll probably find me <span class="comment">cooking</span>, <span class="comment">training</span>, <span class="comment">running</span>, <span class="comment">hiking</span>, or <span class="comment">gaming</span>. I love being outdoors—whether it's exploring trails or just getting some fresh air. Anything that lets me <span class="variable">create</span>, <span class="variable">move</span>, or <span class="variable">unwind</span>. I'm looking for a role where I can keep <span class="property">improving</span>, ship <span class="function">real products</span>, and work with people who actually enjoy building <span class="class-name">cool stuff</span>.</div>
+</div>
+<div class="brace">}</div>`;
+---
+
+<div class="prose dark:prose-invert">
+  <div class="code-block" set:html={codeContent} />
+</div>
+
+<style>
+  .code-block {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    font-family: 'Consolas', 'Monaco', monospace;
+    line-height: 1.6;
+  }
+  
+  .code-block .paragraph {
+    margin-bottom: 0;
+    margin-left: 2rem;
+  }
+  
+  .code-block .spacer {
+    height: 1rem;
+    margin-left: 2rem;
+  }
+  
+  .code-block .brace {
+    margin: 0.25rem 0;
+  }
+  
+  .code-block .function-signature {
+    margin-bottom: 0.25rem;
+  }
+</style>
