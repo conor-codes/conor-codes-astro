@@ -143,8 +143,7 @@
 
 /* VS Code / Visual Studio color scheme for text - Enhanced */
 
-/* Special styling for the intro */
-.intro-name {
+intro-name {
   background: linear-gradient(135deg, #c586c0 0%, #4ec9b0 50%, #569cd6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -155,7 +154,13 @@
 
 /* Keywords like class, function, var, const */
 .keyword {
-  color: #c586c0; /* Purple - like 'class', 'public', 'new' */
+  color: #569cd6; /* Blue - like C# keywords */
+  font-weight: 500;
+}
+
+/* Preprocessor directives like #region, #endregion */
+.preprocessor {
+  color: #c586c0; /* Purple - like #region */
   font-weight: 500;
 }
 
