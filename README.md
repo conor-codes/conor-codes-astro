@@ -1,4 +1,7 @@
 # conor.codes 🌐
+![Astro](https://img.shields.io/badge/Built%20with-Astro-blue?logo=astro)
+![TailwindCSS](https://img.shields.io/badge/Styled%20with-TailwindCSS-38B2AC?logo=tailwindcss)
+![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)
 
 ![Portfolio Preview](https://raw.githubusercontent.com/conor-codes/conor-codes-astro/main/public/preview.png)
 <!-- ↑ Replace this URL with your actual screenshot once uploaded, e.g. /public/preview.png or /assets/site-preview.webp -->
