@@ -1,0 +1,171 @@
+---
+interface Props {
+    project: {
+        date: string;
+        name: string;
+        type: string;
+        desc: string;
+        details: string;
+        stack: string;
+        year: string;
+        status: string;
+    };
+}
+
+const { project } = Astro.props;
+---
+
+<Fragment>
+    <div class="dir-row">
+        <div class="col-date">{project.date}</div>
+        <div class="col-name">&lt;DIR&gt; {project.name}</div>
+        <div class="col-type">{project.type}</div>
+        <div class="col-desc">{project.desc}</div>
+    </div>
+    <div class="expanded-section">
+        <div class="expanded-grid">
+            <img 
+                src={`https://via.placeholder.com/300x200/1a1a1a/ff8800?text=${project.name}`} 
+                alt={project.name} 
+                class="expanded-image"
+            />
+            <div class="expanded-info">
+                <h4>Project Details</h4>
+                <p>{project.details}</p>
+                <div class="info-line">
+                    <span class="info-label">Stack:</span> 
+                    <span class="info-value">{project.stack}</span>
+                </div>
+                <div class="info-line">
+                    <span class="info-label">Year:</span> 
+                    <span class="info-value">{project.year}</span>
+                </div>
+                <div class="info-line">
+                    <span class="info-label">Status:</span> 
+                    <span class="info-value">{project.status}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</Fragment>
+
+<style>
+    .dir-row {
+        display: grid;
+        grid-template-columns: 100px 200px 140px 1fr;
+        gap: 1.5rem;
+        padding: 0.75rem 0.5rem;
+        border-left: 3px solid transparent;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .dir-row:hover {
+        background: rgba(124, 179, 66, 0.08);
+        border-left-color: #7cb342;
+    }
+
+    .dir-row.active {
+        background: rgba(124, 179, 66, 0.08);
+        border-left-color: #7cb342;
+    }
+
+    .col-date {
+        color: #999;
+        font-weight: normal;
+    }
+
+    .col-name {
+        color: #7cb342;
+        font-weight: 600;
+    }
+
+    .col-type {
+        color: #999;
+    }
+
+    .col-desc {
+        color: #999;
+    }
+
+    .expanded-section {
+        display: none;
+        margin-top: 1rem;
+        padding: 1.5rem;
+        background: rgba(124, 179, 66, 0.08);
+        border-left: 3px solid #7cb342;
+    }
+
+    .dir-row.active + .expanded-section {
+        display: block;
+    }
+
+    .expanded-grid {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 2rem;
+    }
+
+    .expanded-image {
+        width: 100%;
+        border: 1px solid #333;
+        border-radius: 4px;
+        transition: border-color 0.3s;
+    }
+
+    .expanded-image:hover {
+        border-color: #666;
+    }
+
+    .expanded-info h4 {
+        color: #ccc;
+        margin-bottom: 0.75rem;
+        font-size: 0.9rem;
+        position: relative;
+        padding-left: 1rem;
+    }
+
+    .expanded-info h4::before {
+        content: '>';
+        position: absolute;
+        left: 0;
+        color: #999;
+    }
+
+    .expanded-info p {
+        color: #999;
+        line-height: 1.7;
+        margin-bottom: 1rem;
+    }
+
+    .info-line {
+        color: #ccc;
+        margin-bottom: 0.5rem;
+        padding-left: 1rem;
+    }
+
+    .info-label {
+        color: #999;
+        font-weight: 600;
+    }
+
+    .info-value {
+        color: #999;
+    }
+
+    @media (max-width: 768px) {
+        .dir-row {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+
+        .expanded-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .col-date, .col-type {
+            font-size: 0.85rem;
+        }
+    }
+</style>

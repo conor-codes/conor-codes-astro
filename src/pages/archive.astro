@@ -1,0 +1,57 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ArchiveWindow from '@/components/ArchiveWindow.astro';
+import { projects } from '@/data/archive-projects.ts';
+
+const seo = {
+  title: "Archive - Conor Murphy",
+  description: "Projects from my early days - no longer live, but learned a ton building them."
+};
+---
+
+<BaseLayout seo={seo}>
+  <div class="archive-container py-6 animate">
+    <div class="ascii-comment">
+      <pre>                                                                                                            
+________  ________  ________  ___  ___  ___  ___      ___ _______     
+|\   __  \|\   __  \|\   ____\|\  \|\  \|\  \|\  \    /  /|\  ___ \     
+\ \  \|\  \ \  \|\  \ \  \___|\ \  \\\  \ \  \ \  \  /  / | \   __/|    
+ \ \   __  \ \   _  _\ \  \    \ \   __  \ \  \ \  \/  / / \ \  \_|/__  
+  \ \  \ \  \ \  \\  \\ \  \____\ \  \ \  \ \  \ \    / /   \ \  \_|\ \ 
+   \ \__\ \__\ \__\\ _\\ \_______\ \__\ \__\ \__\ \__/ /     \ \_______\
+    \|__|\|__|\|__|\|__|\|_______|\|__|\|__|\|__|\|__|/       \|_______|   
+                                                                     
+     01000001 01110010 01100011 01101000 01101001 01110110 01100101                           
+</pre>
+    </div>
+    
+    <ArchiveWindow projects={projects} />
+  </div>
+</BaseLayout>
+
+<style>
+  .archive-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .ascii-comment {
+    margin-bottom: 2rem;
+  }
+
+  .ascii-comment pre {
+    color: #7cb342;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .ascii-comment pre {
+      font-size: 0.5rem;
+    }
+  }
+</style>
