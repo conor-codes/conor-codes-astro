@@ -46,7 +46,7 @@ const base = `/images/archive/${project.slug}`;
               alt={`${project.name} screenshot`}
               class="frame-img zoomable"
               data-lightbox-src={`${base}/${images[0]}`}
-              loading="lazy"
+              loading="eager"
               decoding="async"
             />
           </figure>
@@ -64,7 +64,7 @@ const base = `/images/archive/${project.slug}`;
                 class="thumb zoomable"
                 data-index={i}
                 data-lightbox-src={`${base}/${img}`}
-                loading="lazy"
+                loading="eager"
                 decoding="async"
               />
             ))}
