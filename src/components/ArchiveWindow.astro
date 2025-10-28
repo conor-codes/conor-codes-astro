@@ -11,11 +11,20 @@ interface Props {
         stack: string;
         year: string;
         status: string;
+        category: string;
     }>;
 }
 
 const { projects } = Astro.props;
 ---
+
+<div class="filter-container">
+    <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="professional">Professional</button>
+        <button class="filter-btn" data-filter="personal">Personal</button>
+    </div>
+</div>
 
 <div class="cmd-window">
     <div class="cmd-titlebar">
@@ -55,7 +64,7 @@ const { projects } = Astro.props;
         </div>
 
         <div class="footer-info">
-            <span>{projects.length} Dir(s)  •  More projects buried in old hard drives somewhere...</span>
+            <span class="project-count">{projects.length}</span> Dir(s)  •  More projects buried in old hard drives somewhere...
         </div>
     </div>
 
@@ -65,6 +74,45 @@ const { projects } = Astro.props;
 </div>
 
 <style>
+    .filter-container {
+        margin-bottom: 1.5rem;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .filter-buttons {
+        display: inline-flex;
+        gap: 0.5rem;
+        background: rgba(124, 179, 66, 0.05);
+        padding: 0.5rem;
+        border-radius: 8px;
+        border: 1px solid rgba(124, 179, 66, 0.2);
+    }
+
+    .filter-btn {
+        padding: 0.5rem 1.25rem;
+        background: transparent;
+        border: 1px solid transparent;
+        color: #999;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 0.85rem;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+        color: #7cb342;
+        background: rgba(124, 179, 66, 0.1);
+    }
+
+    .filter-btn.active {
+        color: #7cb342;
+        background: rgba(124, 179, 66, 0.15);
+        border-color: #7cb342;
+        font-weight: 600;
+    }
+
     .cmd-window {
         background: transparent;
         border: 1px solid #ffffff;
@@ -141,10 +189,11 @@ const { projects } = Astro.props;
 
     .cursor {
         display: inline-block;
-        width: 8px;
-        height: 14px;
+        width: 9px;
+        height: 16px;
         background: #7cb342;
-        margin-left: 4px;
+        margin-left: 2px;
+        vertical-align: text-bottom;
         animation: blink 1s infinite;
     }
 
@@ -179,11 +228,17 @@ const { projects } = Astro.props;
         color: #999;
     }
 
+    .project-count {
+        color: #7cb342;
+        font-weight: 600;
+    }
+
     .cmd-footer {
         padding: 1rem;
         border-top: 1px solid #333;
         color: #666;
         font-size: 0.85rem;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
     }
 
     .footer-highlight {
@@ -209,10 +264,87 @@ const { projects } = Astro.props;
         .dir-header {
             font-size: 0.85rem;
         }
+
+        .filter-buttons {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .filter-btn {
+            width: 100%;
+        }
     }
 </style>
 
 <script>
+    // Toggle expand on click - using event delegation
+    document.querySelector('.dir-list')?.addEventListener('click', (e) => {
+        const row = e.target.closest('.dir-row');
+        if (!row) return;
+
+        // Ignore if clicking on images or gallery
+        if (e.target.closest('.frame, .image-strip, .gallery-wrapper, .gallery-empty')) return;
+
+        const isActive = row.classList.contains('active');
+        
+        // Close all other expanded sections
+        document.querySelectorAll('.dir-row.active').forEach(r => {
+            r.classList.remove('active');
+        });
+        
+        // Toggle current
+        if (!isActive) {
+            row.classList.add('active');
+        }
+    });
+
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectRows = document.querySelectorAll('.dir-row');
+    const projectCount = document.querySelector('.project-count');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filter');
+            
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Filter projects
+            let visibleCount = 0;
+            projectRows.forEach(row => {
+                const category = row.getAttribute('data-category');
+                const expandedSection = row.nextElementSibling;
+                
+                // Close any active rows first
+                row.classList.remove('active');
+                
+                if (filter === 'all' || category === filter) {
+                    // Show this row
+                    row.style.display = 'grid';
+                    // Make sure expanded section can be shown (remove inline style)
+                    if (expandedSection && expandedSection.classList.contains('expanded-section')) {
+                        expandedSection.style.display = '';
+                    }
+                    visibleCount++;
+                } else {
+                    // Hide this row
+                    row.style.display = 'none';
+                    // Also hide expanded section
+                    if (expandedSection && expandedSection.classList.contains('expanded-section')) {
+                        expandedSection.style.display = 'none';
+                    }
+                }
+            });
+            
+            // Update count
+            if (projectCount) {
+                projectCount.textContent = visibleCount;
+            }
+        });
+    });
+
     // Close expanded sections on ESC key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
@@ -220,22 +352,5 @@ const { projects } = Astro.props;
                 row.classList.remove('active');
             });
         }
-    });
-
-    // Toggle expand on click
-    document.querySelectorAll('.dir-row').forEach(row => {
-        row.addEventListener('click', function() {
-            const isActive = this.classList.contains('active');
-            
-            // Close all other expanded sections
-            document.querySelectorAll('.dir-row.active').forEach(r => {
-                r.classList.remove('active');
-            });
-            
-            // Toggle current
-            if (!isActive) {
-                this.classList.add('active');
-            }
-        });
     });
 </script>
