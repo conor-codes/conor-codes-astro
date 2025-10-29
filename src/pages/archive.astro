@@ -13,16 +13,16 @@ const seo = {
 <BaseLayout seo={seo}>
   <div class="archive-container py-6 animate">
     <div class="ascii-comment">
-      <pre>                                                                                                            
+      <pre> 
 ________  ________  ________  ___  ___  ___  ___      ___ _______     
 |\   __  \|\   __  \|\   ____\|\  \|\  \|\  \|\  \    /  /|\  ___ \     
 \ \  \|\  \ \  \|\  \ \  \___|\ \  \\\  \ \  \ \  \  /  / | \   __/|    
  \ \   __  \ \   _  _\ \  \    \ \   __  \ \  \ \  \/  / / \ \  \_|/__  
   \ \  \ \  \ \  \\  \\ \  \____\ \  \ \  \ \  \ \    / /   \ \  \_|\ \ 
    \ \__\ \__\ \__\\ _\\ \_______\ \__\ \__\ \__\ \__/ /     \ \_______\
-    \|__|\|__|\|__|\|__|\|_______|\|__|\|__|\|__|\|__|/       \|_______|   
+    \|__|\|__|\|__|\|__|\|_______|\|__|\|__|\|__|\|__|/       \|_______| 
                                                                      
-     01000001 01110010 01100011 01101000 01101001 01110110 01100101                           
+     01000001 01110010 01100011 01101000 01101001 01110110 01100101
 </pre>
     </div>
     
@@ -32,7 +32,7 @@ ________  ________  ________  ___  ___  ___  ___      ___ _______
 </BaseLayout>
 
 <style>
-  .archive-container {
+.archive-container {
     max-width: 1000px;
     margin: 0 auto;
     padding-left: 1rem;
@@ -49,11 +49,40 @@ ________  ________  ________  ___  ___  ___  ___      ___ _______
     font-size: 0.75rem;
     line-height: 1.3;
     margin: 0;
+    white-space: pre;
   }
 
   @media (max-width: 768px) {
     .ascii-comment pre {
-      font-size: 0.7rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.05em;
+     
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ascii-comment pre {
+      font-size: 0.6rem;
+      letter-spacing: 0.03em;
+    }
+  }
+  @media (max-width: 415px) {
+    .ascii-comment pre {
+      font-size: 0.55rem;
+      letter-spacing: 0.02em;
+    }
+  }
+
+  @media (max-width: 375px) {
+    .ascii-comment pre {
+      font-size: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+  }
+
+    @media (max-width: 345px) {
+    .ascii-comment pre {
+      font-size: 0.45rem;
     }
   }
 </style>
