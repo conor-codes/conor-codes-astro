@@ -9,6 +9,11 @@ import Talk from '@/components/ui/Talk.astro';
 import Project from '@/components/ui/Project.astro';
 import CodeAbout from '@/components/ui/CodeAbout.astro';
 import { sortJobsByDate } from '@/lib/utils';
+import ContactTerminal from '@/components/ContactTerminal.astro';
+import RecentProjectsTerminal from '@/components/RecentProjectsTerminal.astro';
+
+
+import { recentProjects } from '@/data/recent-projects';
 
 const entry = await getEntry('pages', 'homepage');
 
@@ -30,67 +35,39 @@ const sortedProjects = projects.sort((a, b) => {
   return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
 });
 ---
-
 <BaseLayout seo={entry.data.seo}>
+  <!-- Author Section -->
   <Container as="section" class="py-6 animate">
     <Author {...DEFAULT_CONFIGURATION.author} />
   </Container>
 
-<Container as="section" class="py-6 animate">
-  <div class="flex flex-col gap-6">
-    <div class="code-font">
-      <div><span class="keyword">using</span> System;</div>
-      <div><span class="keyword">using</span> Location = <span class="string">"Liverpool, England"</span>;</div>
-    </div>
-    <div class="flex items-center code-font">
-      <span class="text-headings">
-        <span class="preprocessor">#region</span> <span class="class-name">About</span>
-      </span>
-    </div>
-    <CodeAbout />
-    <span class="preprocessor">#endregion</span> 
-  </div>
-</Container>
-{
-    links.length > 0 && (
-      <Container as="section" class="py-8 animate">
-        <div class="flex flex-col gap-5">
-          <span class="text-headings">Contact</span>
-          <ul class="flex flex-col gap-3">
-            {links.map((link) => (
-              <li class="py-0.5">
-                <div class="flex items-center gap-5">
-                  <span class="min-w-28 text-muted-foreground">
-                    {link.data.label}
-                  </span>
-                  <a
-                    class="text-headings font-medium"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    href={link.data.url}
-                  >
-                    {link.data.name}
-                  </a>
-                </div>
-              </li>
-            ))}
-          </ul>
+  <!-- Code About Section -->
+  <Container as="section" class="py-6 animate">
+    <div class="home-section">
+      <div class="flex flex-col gap-6">
+        <div class="code-font">
+          <div><span class="keyword">using</span> System;</div>
+          <div><span class="keyword">using</span> Location = <span class="string">"Liverpool, England"</span>;</div>
         </div>
-      </Container>
-    )
-  }
-  {
-    sortedProjects.length > 0 && (
-      <Container as="section" class="py-6 animate">
-        <div class="flex flex-col gap-5">
-          <span class="text-headings">Recent Projects</span>
-          <ul class="flex flex-col gap-6">
-            {sortedProjects.map((project) => (
-              <Project entry={project} />
-            ))}
-          </ul>
+        <div class="flex items-center code-font">
+          <span class="text-headings">
+            <span class="preprocessor">#region</span> <span class="class-name">About</span>
+          </span>
         </div>
-      </Container>
-    )
-  }
+        <CodeAbout />
+        <span class="preprocessor">#endregion</span> 
+      </div>
+    </div>
+  </Container>
+
+  <!-- NEW - Use this instead -->
+  <Container as="section" class="terminal-section animate">
+    <div class="home-section">
+      <h2 class="section-title">Contact</h2>
+      <ContactTerminal />
+      
+      <h2 class="section-title" style="margin-top: 2rem;">Recent Projects</h2>
+      <RecentProjectsTerminal projects={recentProjects} />
+    </div>
+  </Container>
 </BaseLayout>

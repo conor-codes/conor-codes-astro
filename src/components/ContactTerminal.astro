@@ -1,0 +1,186 @@
+---
+// ContactTerminal.astro - Reuses archive CMD window styles
+---
+
+<div class="cmd-window">
+  <div class="cmd-titlebar">
+    <div class="cmd-title">
+      <div class="cmd-icon">C</div>
+      Command Prompt - C:\Users\Conor\Contact
+    </div>
+  </div>
+
+  <div class="cmd-body">
+    <div class="prompt-line">
+      <span class="prompt-path">C:\Users\Conor></span>
+      <span class="prompt-command"> whoami</span>
+      <span class="cursor"></span>
+    </div>
+
+    <div class="output-line">Conor Murphy</div>
+    <div class="output-line">.NET developer specializing in mobile apps</div>
+    
+    <div class="prompt-line" style="margin-top: 1.5rem;">
+      <span class="prompt-path">C:\Users\Conor></span>
+      <span class="prompt-command"> contact --info</span>
+    </div>
+
+    <div class="contact-info">
+      <div class="info-line">
+        <span class="info-label">Email:</span>
+        <a href="mailto:conorcodes@outlook.com" class="info-link">conorcodes@outlook.com</a>
+      </div>
+      <div class="info-line">
+        <span class="info-label">GitHub:</span>
+        <a href="https://github.com/conor-codes" target="_blank" rel="noopener noreferrer" class="info-link">conor-codes</a>
+      </div>
+      <div class="info-line">
+        <span class="info-label">Website:</span>
+        <a href="https://conor.codes" class="info-link">conor.codes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Reuse archive CMD window styles */
+  .cmd-window {
+    background: transparent;
+    border: 1px solid #ffffff;
+    box-shadow: none;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    animation: fadeInUp 0.6s ease-out;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .cmd-window:hover {
+    box-shadow: 0 4px 20px rgba(124, 179, 66, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .cmd-titlebar {
+    background: transparent;
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #333;
+  }
+
+  .cmd-title {
+    font-size: 0.85rem;
+    color: #cccccc;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .cmd-icon {
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: white;
+    font-weight: bold;
+    border-radius: 2px;
+  }
+
+  .cmd-body {
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    background: transparent;
+    color: #999;
+    position: relative;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    min-height: 200px;
+  }
+
+  .prompt-line {
+    margin-bottom: 0.5rem;
+    color: #999;
+  }
+
+  .prompt-path {
+    color: #666;
+  }
+
+  .prompt-command {
+    color: #999;
+    font-weight: 500;
+  }
+
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 9px;
+    height: 16px;
+    background: #7cb342;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: blink 1s infinite;
+  }
+
+  .output-line {
+    color: #e0e0e0;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-info {
+    margin-top: 1rem;
+  }
+
+  .info-line {
+    color: #ccc;
+    margin-bottom: 0.5rem;
+  }
+
+  .info-label {
+    color: #7cb342;
+    font-weight: 600;
+    margin-right: 0.5rem;
+    display: inline-block;
+    min-width: 80px;
+  }
+
+  .info-link {
+    color: #7cb342;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .info-link:hover {
+    color: #a8d97a;
+    text-decoration: underline;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cmd-body {
+      padding: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .info-label {
+      min-width: 70px;
+    }
+  }
+</style>
