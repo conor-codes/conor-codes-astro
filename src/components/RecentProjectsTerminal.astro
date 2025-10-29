@@ -160,14 +160,13 @@ const validProjects = Array.isArray(projects) ? projects : [];
     50%, 100% { opacity: 0; }
   }
 
-  .cursor {
-    display: inline-block;
-    width: 9px;
-    height: 16px;
+  ..cursor {
+   display: inline-block;
+    width: 2px;
+    height: 1.15em;
     background: #7cb342;
-    margin-left: 2px;
     vertical-align: text-bottom;
-    animation: blink 1s infinite;
+    animation: blink 1s step-end infinite;
   }
 
   .system-info {
