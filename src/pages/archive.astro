@@ -43,46 +43,38 @@ ________  ________  ________  ___  ___  ___  ___      ___ _______
     margin-bottom: 2rem;
   }
 
+.ascii-comment pre {
+  color: #7cb342;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  margin: 0;
+  white-space: pre;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Tablets */
+@media (max-width: 768px) {
   .ascii-comment pre {
-    color: #7cb342;
-    font-family: 'Consolas', 'Courier New', monospace;
-    font-size: 0.75rem;
-    line-height: 1.3;
-    margin: 0;
-    white-space: pre;
+    font-size: 0.55rem;
+    letter-spacing: 0.03em;
   }
+}
 
-  @media (max-width: 768px) {
-    .ascii-comment pre {
-      font-size: 0.6rem;
-      letter-spacing: 0.05em;
-     
-    }
+/* Most phones */
+@media (max-width: 430px) {
+  .ascii-comment pre {
+    font-size: 0.45rem;
+    letter-spacing: 0.02em;
   }
+}
 
-  @media (max-width: 480px) {
-    .ascii-comment pre {
-      font-size: 0.6rem;
-      letter-spacing: 0.03em;
-    }
+/* Small phones */
+@media (max-width: 375px) {
+  .ascii-comment pre {
+    font-size: 0.42rem;
+    letter-spacing: 0.01em;
   }
-  @media (max-width: 415px) {
-    .ascii-comment pre {
-      font-size: 0.55rem;
-      letter-spacing: 0.02em;
-    }
-  }
-
-  @media (max-width: 375px) {
-    .ascii-comment pre {
-      font-size: 0.5rem;
-      letter-spacing: 0.02em;
-    }
-  }
-
-    @media (max-width: 345px) {
-    .ascii-comment pre {
-      font-size: 0.45rem;
-    }
-  }
+}
 </style>
